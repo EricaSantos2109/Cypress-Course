@@ -47,6 +47,6 @@ describe('Helpers', () => {
         cy.get('#formNome').invoke('val', 'Texto via invoke')
         cy.window().invoke('alert', 'Da pra ver?')
         cy.get('#resultado')
-            .invoke('html', '<input type ="button" value="hacked"/>')
+            .invoke('html', '<input type ="button" value="hacked"/>') 
     })
 })
