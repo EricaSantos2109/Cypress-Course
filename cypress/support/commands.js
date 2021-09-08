@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+
+//command serve para reduzir a complexidade encapsulando tudo em um comando e reuso de codigo que uso bastante
+
+
+Cypress.Commands.add('clickAlert', (locator, message) => { //locator diz aonde eu vou clicar e o message a mensagem que devo receber
+    cy.get(locator).click() //clica no elemento
+    cy.on('window:alert', msg => {
+        expect(msg).to.be.equal(message) //checa a mensagem do alerta
+    })
+})

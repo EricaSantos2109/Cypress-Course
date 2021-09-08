@@ -8,12 +8,13 @@ describe('Alert...', () =>{
         cy.reload()
     })
 
-    it('Alert', () => {
-        cy.get('#alert').click()
-        cy.on('window:alert', msg => {
-            console.log(msg)
-            expect(msg).to.be.equal('Alert Simples')
-        })
+    it.only('Alert', () => {
+        // cy.get('#alert').click()
+        // cy.on('window:alert', msg => {
+        //     console.log(msg)
+        //     expect(msg).to.be.equal('Alert Simples')
+        // })
+        cy.clickAlert('#alert', 'Alert Simples')
     })
     it('Alert com mock', () => {
         const stub = cy.stub().as('alerta')
@@ -23,7 +24,7 @@ describe('Alert...', () =>{
         })
     })
 
-    it.only('Confirm', () =>{
+    it('Confirm', () =>{
         cy.on('window:confirm', msg => {
             expect(msg).to.be.equal('Confirm simples')
         })
@@ -33,7 +34,7 @@ describe('Alert...', () =>{
         cy.get('#confirm').click()
     })
 
-    it.only('Deny', () =>{
+    it('Deny', () =>{
         cy.on('window:confirm', msg => {
             expect(msg).to.be.equal('Confirm Simples')
             return false
@@ -44,7 +45,7 @@ describe('Alert...', () =>{
         cy.get('#confirm').click()
     })
 
-    it.only('Prompt', () => {
+    it('Prompt', () => {
         cy.window().then(win => {
             cy.stub(win, 'prompt').returns('40') //esta colocando um valor na caixinha do prompt
         })
@@ -58,7 +59,7 @@ describe('Alert...', () =>{
     })
 
     //desafio
-    it.only('validando mgs', ()=>{
+    it('validando mgs', ()=>{
         const stub = cy.stub().as('alerta')
         cy.on('window:alert', stub)
         cy.get('#formCadastrar').click()
